@@ -233,8 +233,6 @@ ORDER BY
     c.id;
 
 
-
-
 -- Consulta del costo total por reserva
 SELECT 
     R.reservation_id,
@@ -271,8 +269,7 @@ GROUP BY R.room_id;
 
 SELECT 
     C.name AS client,
-    COUNT(R.reservation_id) AS total_reservations,
-    SUM(P.amount) AS total_value
+    COUNT(R.reservation_id) AS total_reservations
 FROM clients C
 JOIN reservations R ON C.id = R.client_id
 JOIN payments P ON R.reservation_id = P.reservation_id
@@ -289,7 +286,7 @@ SELECT
     (COUNT(R.reservation_id)) AS occupied_rooms
 FROM rooms H
 LEFT JOIN reservations R ON H.id = R.room_id
-WHERE R.check_in_date BETWEEN '2024-01-01' AND '2024-12-31' -- Modifica las fechas según necesites
+WHERE R.check_in_date BETWEEN '2024-01-01' AND '2024-12-31'
 GROUP BY H.room_type;
 
 
