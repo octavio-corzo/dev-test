@@ -6,16 +6,17 @@ const users = [
 
 const removeDuplicates = (data) => {
     const user = {};
-    const uniqueUser = [];
-
-    for (item of data) {
+    
+    for (let i = data.length - 1; i >= 0; i--) {
+        const item = data[i];
         if (!user[item.id]) {
             user[item.id] = true;
-            uniqueUser.push(item);
+        } else {
+            data.splice(i, 1); 
         }
     }
 
-    return uniqueUser;
+    return data;
 }
 
 console.log(removeDuplicates(users)); 
